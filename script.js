@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
             pass = false;
         }
 
-        // console.log("|||||: " + dat + "    " + pass);
-
         if(!pass){
             this.value = dat.substring(0, dat.length-1);
             return;
@@ -47,31 +45,26 @@ document.addEventListener("DOMContentLoaded", function () {
     generate.addEventListener("click", function () {
         const accentBoxes = document.querySelectorAll(".text-box-container");
         
-        let accentMap = new Array(accentBoxes.length + 1);
+        const accentMap = new Array(128).fill(-1);
         let nullChance = 1 - ((Number.parseInt(propogate.value) / 100));
 
         //at the null character
-        accentMap[0] = new Array(2);
-        accentMap[0][0] = "\0";
-        accentMap[0][1] = nullChance;
-
-        for (let i = 1; i < accentBoxes.length; i++) {
+        accentMap[0] = nullChance;
+        
+        for (let i = 0; i < accentBoxes.length; i++) {
             let elem = accentBoxes[i];
+            let comps = elem.querySelectorAll(".pair-textbox");
+            let char = comps[0].value.charAt(0);
+            let bias = Number.parseFloat(comps[1].value);
 
-            let c = elem.querySelector("char");
-            let bias = elem.querySelector("bias");
-
-            accentMap[i] = new Array(2);
-
-            if(c.textContent.charAt(0) === '' || Number.parseFloat(bias.textContent) === NaN){
-                accentMap[i][0] = '~';
-                accentMap[i][1] = 1;
+            if(char === '' || bias === NaN){
+                accentMap["~".charCodeAt(0)] = 1;
+                continue;
             }
 
-            accentMap[i][0] = c.textContent.charAt(0);
-            accentMap[i][1] = Number.parseFloat(bias.textContent);
+            accentMap[char.charCodeAt(0)] = bias;
         }
-
+        
         if(root.value.length < 2){
             alert("Input root must have at least 2 letters");
             return;
@@ -271,16 +264,9 @@ class PseudowordGeneratorV2 {
         this.cgraph = new CharacterGraph();
     }
   
-    next(root, count, maxLength, chanceThreshold, accents) {
+    next(root, count, maxLength, chanceThreshold, accentMap) {
         const res = new Array(count);
     
-        const accentMap = new Array(128).fill(-1);
-        for (const [char, value] of accents) {
-            if (value >= 0) {
-                accentMap[char.charCodeAt(0)] = value;
-            }
-        }
-  
         const randLen = (maxLength & RANDOM_LENGTH) !== 0;
         let maxl = maxLength;
         if (randLen) maxl ^= RANDOM_LENGTH;
