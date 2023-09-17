@@ -1,0 +1,62 @@
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header and Footer Styling */
+header, footer {
+    background-color: #008969;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1, footer p {
+    color: #ffffff;
+    font-size: 24px; /* Increase the font size for emphasis */
+}
+
+/* Content Styling */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ececec; /* Add a light background color to content */
+    border-radius: 10px; /* Add rounded corners to content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Improve spacing between sections */
+.input-div,
+.randomness-div,
+.biases-div {
+    margin-bottom: 40px; /* Increase spacing between sections */
+}
+
+/* Add a horizontal divider */
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #252525;
+    margin: 20px 0; /* Add space above and below the divider */
+}
+
+/* Style text boxes */
+.text-box-container {
+    margin-bottom: 20px; /* Reduce margin-bottom for text boxes */
+}
+
+/* Style floating elements */
+.floating-div {
+    display: inline-block;
+    margin: 10px; /* Add space around floating elements */
+    padding: 10px; /* Add padding to floating elements */
+    background-color: #e6e6e6; /* Add a background color to floating elements */
+    border: 1px solid #ddd; /* Add a subtle border to floating elements */
+    border-radius: 5px; /* Add rounded corners to floating elements */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to floating elements */
+}
+
+div:empty {
+    display: none;
+}

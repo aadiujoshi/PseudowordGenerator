@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Pseudoword Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pseudoword Generator</h1>
+    </header>
+
+    <div class="content">
+        <!--info-->
+        <div style="margin-bottom: 25px;">
+            <h2>What is it?</h2>
+            <p style="margin-top: 10px; margin-left: 25px;">
+                In short, a pseudoword generator can randomly create 'unique' or 'fake' words,
+                based on patterns found in real english words. You can use this tool for creative 
+                writing purposes, as a password generator, or just for fun. 
+            </p>
+
+            <hr>
+
+            <h2>How to Use:</h2>
+
+            <h3>First 2 Letters: </h3>
+            <p style="margin-left: 25px; margin-top: 10px;">
+                These will be the first 2 'root' letters that will appear in the randomly generated words, and must be lowercase. 
+            </p>
+
+            <h3>Count: </h3>
+            <p style="margin-left: 25px; margin-top: 10px;">
+                How many pseudowords to be generated, max of 100 words.
+            </p>
+
+            <h3>Propogation: </h3>
+            <p style="margin-left: 25px; margin-top: 10px;">
+                How likely it is for the word to be longer, so a greater value means longer words. 
+                Max propogation value of 100, and the generator will not generate words longer than 24 characters.
+            </p>
+
+            <h3>Randomness: </h3>
+            <p style="margin-left: 25px; margin-top: 10px;">
+                This is the 'weirdness' factor in what kind of letters will be used to make the pseudowords. 
+                A higher value means more obscure words, which are sometimes unpronounceable. Max randomness of 100.
+            </p>
+
+            <h3>Character biases: </h3>
+            <p style="margin-left: 25px; margin-top: 10px;">
+                Lets say you wanted to generate psuedowords that had the letters "p" and "h" in them. 
+                You can add character biases, which will multiply the chance of that specific character 
+                appearing the pseudowords. A bias multiplier less than 1 means that it has a less likely 
+                chance of appearing, and a value greater than 1 means that character has a higher chance 
+                of appearing in the pseudoword. 
+            </p>
+        </div>
+
+        <!--interactive-->
+        <div>
+            <!--left-->
+            <div class="floating-div" id="results-div" style="width: 49%; margin-bottom:auto;">
+                Results will show here
+            </div>
+
+            <!-- right -->
+            <div class="floating-div" style="margin-left: 20px;">
+                <div class="input-div">
+                    <div style="margin-bottom: 10px;">
+                        <p>First 2 Letters</p>
+                        <input type="text" id="rootInput" placeholder="Enter first 2 root letters">
+                        <button id="generateButton">Generate</button>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <p>Count</p>
+                        <input type="number" id="outputCount" placeholder="# of words to be generated" value="1">
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <p>Propogation</p>
+                        <input type="number" id="propogation" placeholder="Determines length of word" value="1">
+                    </div>
+                    <div class="randomness-div" >
+                        <p>Randomness</p>
+                        <input type="number" id="randomness" value="0", placeholder="Character weirdness">
+                    </div>
+                </div>
+        
+                <div class="biases-div">
+                    <p>Character Biases</p>
+                    <button id="plusButton">+</button>
+                    <button id="minusButton">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Pseudoword Generator, Aadi Joshi</p>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>
